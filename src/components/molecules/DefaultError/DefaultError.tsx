@@ -1,10 +1,10 @@
-import { useErrorBoundary } from 'react-error-boundary';
-import { useTranslation } from 'react-i18next';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { useErrorBoundary } from "react-error-boundary";
+import { useTranslation } from "react-i18next";
+import { Text, TouchableOpacity, View } from "react-native";
 
-import { useTheme } from '@/theme';
+import { useTheme } from "@/theme";
 
-import { IconByVariant } from '@/components/atoms';
+import { IconByVariant } from "@/components/atoms";
 
 type Properties = {
   readonly onReset?: () => void;
@@ -32,10 +32,10 @@ function DefaultErrorScreen({ onReset = undefined }: Properties) {
         width={42}
       />
       <Text style={[fonts.gray800, fonts.bold, fonts.size_16]}>
-        {t('error_boundary.title')}
+        {t("error_boundary.title")}
       </Text>
       <Text style={[fonts.gray800, fonts.size_12, fonts.alignCenter]}>
-        {t('error_boundary.description')}
+        {t("error_boundary.description")}
       </Text>
 
       {onReset ? (
@@ -46,7 +46,7 @@ function DefaultErrorScreen({ onReset = undefined }: Properties) {
           }}
         >
           <Text style={[fonts.gray800, fonts.size_16]}>
-            {t('error_boundary.cta')}
+            {t("error_boundary.cta")}
           </Text>
         </TouchableOpacity>
       ) : undefined}

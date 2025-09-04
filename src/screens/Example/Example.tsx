@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
-import { useI18n, useUser } from '@/hooks';
-import { useTheme } from '@/theme';
+import { useI18n, useUser } from "@/hooks";
+import { useTheme } from "@/theme";
 
-import { AssetByVariant, IconByVariant, Skeleton } from '@/components/atoms';
-import { SafeScreen } from '@/components/templates';
+import { AssetByVariant, IconByVariant, Skeleton } from "@/components/atoms";
+import { SafeScreen } from "@/components/templates";
 
 const MAX_RANDOM_ID = 9;
 
@@ -33,13 +33,13 @@ function Example() {
   useEffect(() => {
     if (fetchOneUserQuery.isSuccess) {
       Alert.alert(
-        t('screen_example.hello_user', { name: fetchOneUserQuery.data.name }),
+        t("screen_example.hello_user", { name: fetchOneUserQuery.data.name })
       );
     }
   }, [fetchOneUserQuery.isSuccess, fetchOneUserQuery.data, t]);
 
   const onChangeTheme = () => {
-    changeTheme(variant === 'default' ? 'dark' : 'default');
+    changeTheme(variant === "default" ? "dark" : "default");
   };
 
   const handleResetError = () => {
@@ -77,12 +77,12 @@ function Example() {
         <View style={[gutters.paddingHorizontal_32, gutters.marginTop_40]}>
           <View style={[gutters.marginTop_40]}>
             <Text style={[fonts.size_40, fonts.gray800, fonts.bold]}>
-              {t('screen_example.title')}
+              {t("screen_example.title")}
             </Text>
             <Text
               style={[fonts.size_16, fonts.gray200, gutters.marginBottom_40]}
             >
-              {t('screen_example.description')}
+              {t("screen_example.description")}
             </Text>
           </View>
 

@@ -1,20 +1,20 @@
-import type { ImageProps, ImageSourcePropType } from 'react-native';
+import type { ImageProps, ImageSourcePropType } from "react-native";
 
-import { useMemo } from 'react';
-import { Image } from 'react-native';
-import * as z from 'zod';
+import { useMemo } from "react";
+import { Image } from "react-native";
+import * as z from "zod";
 
-import { useTheme } from '@/theme';
-import getAssetsContext from '@/theme/assets/getAssetsContext';
+import { useTheme } from "@/theme";
+import getAssetsContext from "@/theme/assets/getAssetsContext";
 
 type Properties = {
   readonly extension?: string;
   readonly path: string;
-} & Omit<ImageProps, 'source'>;
+} & Omit<ImageProps, "source">;
 
-const images = getAssetsContext('images');
+const images = getAssetsContext("images");
 
-function AssetByVariant({ extension = 'png', path, ...props }: Properties) {
+function AssetByVariant({ extension = "png", path, ...props }: Properties) {
   const { variant } = useTheme();
 
   const image = useMemo(() => {
@@ -22,7 +22,7 @@ function AssetByVariant({ extension = 'png', path, ...props }: Properties) {
       z.custom<ImageSourcePropType>().parse(images(`./${path}.${extension}`));
 
     try {
-      if (variant === 'default') {
+      if (variant === "default") {
         return getDefaultSource();
       }
 
@@ -33,7 +33,7 @@ function AssetByVariant({ extension = 'png', path, ...props }: Properties) {
       } catch (error) {
         console.warn(
           `Couldn't load the image: ${path}.${extension} for the variant ${variant}, Fallback to default`,
-          error,
+          error
         );
         return getDefaultSource();
       }

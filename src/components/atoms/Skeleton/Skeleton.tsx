@@ -1,15 +1,15 @@
-import type { DimensionValue, ViewProps } from 'react-native';
+import type { DimensionValue, ViewProps } from "react-native";
 
-import { useEffect } from 'react';
-import { View } from 'react-native';
+import { useEffect } from "react";
+import { View } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
   withTiming,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 
-import { useTheme } from '@/theme';
+import { useTheme } from "@/theme";
 
 type Properties = {
   readonly height?: DimensionValue;
@@ -25,7 +25,7 @@ function SkeletonLoader({
   children,
   height = HEIGHT,
   loading = false,
-  width = '100%',
+  width = "100%",
   ...props
 }: Properties) {
   const { backgrounds, borders } = useTheme();
