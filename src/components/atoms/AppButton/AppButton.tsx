@@ -23,7 +23,7 @@ export interface AppButtonProps {
   label: string;
   onPress?: () => void;
   size?: Size;
-  variant?: Variant;               
+  variant: Variant;               
   color?: string;         
   textColor?: string; 
   tonalOpacity?: number;     

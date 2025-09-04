@@ -9,7 +9,7 @@ type AppPriceProps = {
     content: number,
     size: number,
     perWhat: string,
-    isPrimaryColor:boolean,
+    isPrimaryColor?: boolean,
 }
 
 export default function AppPrice({ content, size, perWhat,isPrimaryColor = true}: AppPriceProps) {
