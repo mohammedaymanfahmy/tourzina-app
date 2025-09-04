@@ -18,9 +18,11 @@
     "react-dom": "19.0.0",
     "react-native": "0.79.6",
     "react-native-element-dropdown": "^2.12.4",
-    "react-native-web": "^0.20.0",
+    "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
-    "react-native-safe-area-context": "5.4.0"
+    "react-native-svg": "^15.12.1",
+    "react-native-web": "^0.20.0",
+    "zod": "^4.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
