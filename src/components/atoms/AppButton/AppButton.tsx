@@ -11,22 +11,27 @@ import {
 } from "react-native";
 
 type Size = "sm" | "md" | "lg";
-type Variant = "text" | "outlined" | "contained" | "elevated" | "contained-tonal";
+type Variant =
+  | "text"
+  | "outlined"
+  | "contained"
+  | "elevated"
+  | "contained-tonal";
 
 const SIZES: Record<Size, { h: number; px: number; fs: number }> = {
-  sm: { h: 52, px: 30, fs: 18 },
-  md: { h: 52, px: 100, fs: 20 },
-  lg: { h: 52, px: 170, fs: 22 },
+  sm: { h: 40, px: 16, fs: 14 },
+  md: { h: 48, px: 24, fs: 16 },
+  lg: { h: 52, px: 32, fs: 18 },
 };
 
 export interface AppButtonProps {
   label: string;
   onPress?: () => void;
   size?: Size;
-  variant?: Variant;               
-  color?: string;         
-  textColor?: string; 
-  tonalOpacity?: number;     
+  variant?: Variant;
+  color?: string;
+  textColor?: string;
+  tonalOpacity?: number;
   fullWidth?: boolean;
   disabled?: boolean;
   loading?: boolean;
@@ -46,7 +51,13 @@ const shadow = (elevation = 4): ViewStyle => ({
 
 const hexToRGBA = (hex: string, alpha = 1) => {
   const h = hex.replace("#", "");
-  const full = h.length === 3 ? h.split("").map(c => c + c).join("") : h;
+  const full =
+    h.length === 3
+      ? h
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : h;
   const r = parseInt(full.slice(0, 2), 16);
   const g = parseInt(full.slice(2, 4), 16);
   const b = parseInt(full.slice(4, 6), 16);
@@ -56,7 +67,7 @@ const AppButton: React.FC<AppButtonProps> = ({
   label,
   onPress,
   size = "lg",
-  color = colors.primary, 
+  color = colors.primary,
   variant = "contained",
   tonalOpacity = 0.12,
   textColor,
@@ -78,28 +89,24 @@ const AppButton: React.FC<AppButtonProps> = ({
     case "contained":
       bg = color;
       fg = textColor || "#FFFFFF";
-      textColor = fg;
       break;
     case "elevated":
       bg = color;
       fg = textColor || "#FFFFFF";
-      textColor = fg;
       extra = shadow(6);
       break;
     case "outlined":
       bg = "transparent";
       borderW = 2;
       fg = textColor || color;
-      textColor = fg;
       borderC = color;
       break;
     case "text":
+      fg = textColor || color;
       break;
     case "contained-tonal":
-      bg = color;
-      fg = textColor || "#FFFFFF";
-      textColor = fg;
       bg = hexToRGBA(color, tonalOpacity);
+      fg = textColor || color;
       break;
   }
   return (
@@ -111,7 +118,7 @@ const AppButton: React.FC<AppButtonProps> = ({
         {
           height: h,
           paddingHorizontal: px,
-          borderRadius: 21,    
+          borderRadius: 21,
           backgroundColor: bg,
           borderWidth: borderW,
           borderColor: borderC,
@@ -124,11 +131,11 @@ const AppButton: React.FC<AppButtonProps> = ({
       ]}
     >
       {loading ? (
-        <ActivityIndicator color={textColor} />
+        <ActivityIndicator color={fg} />
       ) : (
         <Text
           numberOfLines={1}
-          style={[{ color: textColor, fontSize: fs, fontWeight: "400" }, textStyle]}
+          style={[{ color: fg, fontSize: fs, fontWeight: "400" }, textStyle]}
         >
           {label}
         </Text>
