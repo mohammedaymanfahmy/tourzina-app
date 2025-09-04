@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import TripCard from "./src/components/molecules/TripCard";
 import colors from "./src/colors/colors";
@@ -7,8 +7,83 @@ import AppButton from "./src/components/atoms/AppButton/AppButton";
 import IconButton from "./src/components/atoms/IconBtn/IconButton";
 import { Image } from "react-native";
 import AppInput from "./src/components/atoms/AppInput";
+import SignUpScreen from "./src/screens/SignUp/SignUpScreen";
+import SignInScreen from "./src/screens/SignIn/SignInScreen";
+import ForgotPasswordScreen from "./src/screens/ForgotPassword/ForgotPasswordScreen";
+import NewPasswordScreen from "./src/screens/NewPassword/NewPasswordScreen";
+import OTPVerificationScreen from "./src/screens/OTPVerification/OTPVerificationScreen";
+import PopupModal from "./src/components/atoms/PopupModal/PopupModal";
 
 export default function App() {
+  const [currentScreen, setCurrentScreen] = useState("home");
+  const [userEmail, setUserEmail] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [showOTPSuccessPopup, setShowOTPSuccessPopup] = useState(false);
+
+  // Reset states when going back to home
+  const goToHome = () => {
+    setCurrentScreen("home");
+    setUserEmail("");
+    setShowSuccessPopup(false);
+    setShowOTPSuccessPopup(false);
+  };
+
+  if (currentScreen === "signup") {
+    return (
+      <SignUpScreen
+        onNavigateToSignIn={() => setCurrentScreen("signin")}
+        onGoBack={goToHome}
+        onSignUpSuccess={(email) => {
+          setUserEmail(email);
+          setCurrentScreen("otp-verification");
+        }}
+      />
+    );
+  }
+
+  if (currentScreen === "signin") {
+    return (
+      <SignInScreen
+        onNavigateToSignUp={() => setCurrentScreen("signup")}
+        onGoBack={goToHome}
+        onForgotPassword={() => setCurrentScreen("forgot-password")}
+      />
+    );
+  }
+
+  if (currentScreen === "forgot-password") {
+    return (
+      <ForgotPasswordScreen
+        onGoBack={() => setCurrentScreen("signin")}
+        onContinue={(email) => {
+          setUserEmail(email);
+          setCurrentScreen("new-password");
+        }}
+      />
+    );
+  }
+
+  if (currentScreen === "new-password") {
+    return (
+      <NewPasswordScreen
+        email={userEmail}
+        onGoBack={() => setCurrentScreen("forgot-password")}
+        onSuccess={() => setShowSuccessPopup(true)}
+      />
+    );
+  }
+
+  if (currentScreen === "otp-verification") {
+    return (
+      <OTPVerificationScreen
+        email={userEmail}
+        purpose="signup"
+        onGoBack={() => setCurrentScreen("signup")}
+        onVerifySuccess={() => setShowOTPSuccessPopup(true)}
+      />
+    );
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -29,16 +104,44 @@ export default function App() {
         type="password"
       />
       <AppInput placeHolder="Enter your search" size="large" type="search" />
+      <View style={styles.buttonContainer}>
+        <AppButton
+          label="Sign In"
+          onPress={() => setCurrentScreen("signin")}
+          size="lg"
+          variant="outlined"
+          color={colors.primary}
+          fullWidth={false}
+          disabled={false}
+          loading={false}
+        />
+        <AppButton
+          label="Sign Up"
+          onPress={() => setCurrentScreen("signup")}
+          size="lg"
+          variant="contained"
+          tonalOpacity={1}
+          color={colors.primary}
+          fullWidth={false}
+          disabled={false}
+          loading={false}
+        />
+      </View>
+
+      {/* Test OTP Button */}
       <AppButton
-        label="sign up"
-        onPress={() => console.log("Button Pressed")}
-        size="lg"
-        variant="contained"
-        tonalOpacity={1}
+        label="Test OTP Screen"
+        onPress={() => {
+          setUserEmail("test@example.com");
+          setCurrentScreen("otp-verification");
+        }}
+        size="md"
+        variant="contained-tonal"
         color={colors.primary}
         fullWidth={false}
         disabled={false}
         loading={false}
+        style={styles.buttonContainer}
       />
       <View style={{ gap: 12, flexDirection: "row", padding: 16 }}>
         <IconButton
@@ -92,6 +195,56 @@ export default function App() {
           accessibilityLabel="Facebook Sign-In"
         />
       </View>
+
+      {/* Success Popup */}
+      <PopupModal
+        visible={showSuccessPopup}
+        title="Password Reset Successful!"
+        description="Your password has been successfully reset. You can now sign in with your new password."
+        icon={
+          <View style={styles.successIcon}>
+            <text style={styles.successIconText}>✓</text>
+          </View>
+        }
+        buttons={[
+          {
+            label: "Continue to Sign In",
+            onPress: () => {
+              setShowSuccessPopup(false);
+              setCurrentScreen("signin");
+              setUserEmail("");
+            },
+            variant: "contained",
+            color: colors.primary,
+          },
+        ]}
+        dismissible={false}
+      />
+
+      {/* OTP Success Popup */}
+      <PopupModal
+        visible={showOTPSuccessPopup}
+        title="Verification Successful!"
+        description="Your account has been successfully verified. Welcome to Tourzina!"
+        icon={
+          <View style={styles.successIcon}>
+            <text style={styles.successIconText}>✓</text>
+          </View>
+        }
+        buttons={[
+          {
+            label: "Continue",
+            onPress: () => {
+              setShowOTPSuccessPopup(false);
+              setCurrentScreen("signin");
+              setUserEmail("");
+            },
+            variant: "contained",
+            color: colors.primary,
+          },
+        ]}
+        dismissible={false}
+      />
     </View>
   );
 }
@@ -102,5 +255,26 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     alignItems: "center",
     justifyContent: "center",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    gap: 12,
+    marginVertical: 16,
+  },
+  testButton: {
+    marginVertical: 8,
+  },
+  successIcon: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: colors.primary,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  successIconText: {
+    fontSize: 32,
+    color: "white",
+    fontWeight: "bold",
   },
 });

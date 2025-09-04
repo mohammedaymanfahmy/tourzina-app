@@ -50,3 +50,4 @@ coverage/
 # Optional (if you ever eject Expo → native projects)
 ios/
 android/
+package-lock.json
