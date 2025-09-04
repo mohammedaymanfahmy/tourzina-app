@@ -1,18 +1,46 @@
-import { SafeAreaView, View } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+// ApplicationNavigator.tsx
+import React, { useEffect } from 'react';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { AntDesign } from '@expo/vector-icons';
 
-const ApplicationNavigator = () => {
-  return (
-    <View
-      style={{
-        flex: 1,
-      }}
-    >
-      <Icon name="arrowleft" size={30} color="#900" />
-    </View>
-  );
+// 1️⃣ Define your stack param types (for TypeScript safety)
+export type RootStackParamList = {
+  Home: undefined;
+  Details: { message: string };
 };
 
-export default ApplicationNavigator;
+const Stack = createStackNavigator<RootStackParamList>();
 
-// alimam miya 150 javascript questions part 1
+// 3️⃣ Main Navigator
+function ApplicationNavigator() {
+  useEffect(() => {
+    console.log('App started 🚀');
+  }, []);
+
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: true,
+            headerTitleAlign: 'center',
+          }}
+        >
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Details" component={DetailsScreen} />
+          <Stack.Screen name="SignUp" component={SignUpScreen} />
+          <Stack.Screen name="SignIn" component={SignInScreen} />
+          <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+          <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+          <Stack.Screen name="OTPVerification" component={OTPVerificationScreen} />
+
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
+}
+
+export default ApplicationNavigator;

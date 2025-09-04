@@ -16,6 +16,7 @@ import { LabeledInput, RadioOption } from "../../components/molecules";
 import AppTitle from "../../components/atoms/title/AppTitle";
 import colors from "../../colors/colors";
 import { Image } from "react-native";
+import { hp, wp } from "@/utils/Dimensions";
 
 interface SignInFormData {
   email: string;
@@ -279,8 +280,8 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 24,
-    paddingBottom: 32,
+    paddingHorizontal: wp(24),
+    paddingBottom: hp(32),
   },
   header: {
     alignItems: "center",

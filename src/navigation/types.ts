@@ -8,4 +8,9 @@ export type RootScreenProps<
 export type RootStackParamList = {
   [Paths.Example]: undefined;
   [Paths.Startup]: undefined;
+  [Paths.SignUpScreen]: undefined;
+  [Paths.SignInScreen]: undefined;
+  [Paths.ForgotPasswordScreen]: undefined;
+  [Paths.NewPasswordScreen]: undefined;
+  [Paths.OTPVerificationScreen]: undefined;
 };
