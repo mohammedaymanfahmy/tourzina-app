@@ -2,6 +2,10 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import TripCard from "./src/components/molecules/TripCard";
+import colors from "./src/colors/colors";
+import AppButton from "./src/components/atoms/AppButton/AppButton";
+import IconButton from "./src/components/atoms/IconBtn/IconButton";
+import { Image } from "react-native";
 
 export default function App() {
   return (
@@ -17,6 +21,59 @@ export default function App() {
           rating={4.5}
           onFavPress={() => alert('added to favorites')}
           />
+          <AppButton 
+        label="sign up"
+        onPress={() => console.log("Button Pressed")}
+        size="lg"
+        variant="contained"
+        tonalOpacity= {1}
+        // textColor= {colors.primary}
+        color = {colors.primary}
+        fullWidth={false}
+        disabled={false}
+        loading={false} />
+         <View style={{ gap: 12, flexDirection: "row", padding: 16 }}>
+      <IconButton
+        icon={({ color, size }) => (
+          <Image source = {require ("./assets/google.png")} style={{width: size, height: size,resizeMode: 'contain'
+          }} />)}
+        onPress={() => console.log("Icon Button Pressed")}
+        size="lg"
+        iconsize={20}
+        variant="contained"
+        tileColor="white"
+        pressColor="lightgrey"
+        accessibilityLabel="Google Sign-In"
+        />
+        <IconButton
+        icon={({ color, size }) => (
+          <Image source = {require ("./assets/apple.png")} style={{width: size, height: size, resizeMode:'contain'}} />)}
+        onPress={() => console.log("Icon Button Pressed")}
+        size="lg"
+        color = {colors.primary}
+        iconsize={20}
+        iconColor="#000000"
+        variant="contained"
+        tileColor="black"
+        pressColor="lightgrey"
+        accessibilityLabel="Google Sign-In"
+        />
+        <IconButton
+        icon={({ color, size }) => (
+          <Image source = {require ("./assets/facebook.png")} style={{width: size, height: size,resizeMode:'contain'}} />)}
+        onPress={() => console.log("Icon Button Pressed")}
+        size="lg"
+        color = {colors.primary}
+        iconsize={20}
+        iconpadding={0}
+        iconColor="#000000"
+        variant="contained"
+        tileColor="black"
+        pressColor="lightgrey"
+        accessibilityLabel="Google Sign-In"
+        />
+        </View>
+        <StatusBar style="light" /> 
       </View>
   );
 }
