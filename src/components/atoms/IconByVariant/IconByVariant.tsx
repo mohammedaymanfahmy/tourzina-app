@@ -1,18 +1,18 @@
-import type { ReactElement } from 'react';
-import type { SvgProps } from 'react-native-svg';
+import type { ReactElement } from "react";
+import type { SvgProps } from "react-native-svg";
 
-import { useMemo } from 'react';
-import * as z from 'zod';
+import { useMemo } from "react";
+import * as z from "zod";
 
-import { useTheme } from '@/theme';
-import getAssetsContext from '@/theme/assets/getAssetsContext';
+import { useTheme } from "@/theme";
+import getAssetsContext from "@/theme/assets/getAssetsContext";
 
 type Properties = {
   readonly path: string;
 } & SvgProps;
 
-const icons = getAssetsContext('icons');
-const EXTENSION = 'svg';
+const icons = getAssetsContext("icons");
+const EXTENSION = "svg";
 const SIZE = 24;
 
 function IconByVariant({
@@ -30,12 +30,12 @@ function IconByVariant({
         z
           .object({
             default: z.custom<React.FC<SvgProps>>(() =>
-              z.custom<ReactElement<SvgProps>>(),
+              z.custom<ReactElement<SvgProps>>()
             ),
           })
           .parse(icons(`./${path}.${EXTENSION}`)).default;
 
-      if (variant === 'default') {
+      if (variant === "default") {
         return getDefaultSource();
       }
 
@@ -43,7 +43,7 @@ function IconByVariant({
         const fetchedModule = z
           .object({
             default: z.custom<React.FC<SvgProps>>(() =>
-              z.custom<ReactElement<SvgProps>>(),
+              z.custom<ReactElement<SvgProps>>()
             ),
           })
           .parse(icons(`./${variant}/${path}.${EXTENSION}`));
@@ -52,7 +52,7 @@ function IconByVariant({
       } catch (error) {
         console.warn(
           `Couldn't load the icon: ${path}.${EXTENSION} for the variant ${variant}, Fallback to default`,
-          error,
+          error
         );
         return getDefaultSource();
       }

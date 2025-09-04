@@ -1,19 +1,19 @@
-import type { PropsWithChildren } from 'react';
-import type { SafeAreaViewProps } from 'react-native-safe-area-context';
+import type { PropsWithChildren } from "react";
+import type { SafeAreaViewProps } from "react-native-safe-area-context";
 
-import { StatusBar } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { useTheme } from '@/theme';
+import { useTheme } from "@/theme";
 
-import { DefaultError } from '@/components/molecules';
-import { ErrorBoundary } from '@/components/organisms';
+import { DefaultError } from "@/components/molecules";
+import { ErrorBoundary } from "@/components/organisms";
 
 type Properties = PropsWithChildren<
   {
     readonly isError?: boolean;
     readonly onResetError?: () => void;
-  } & Omit<SafeAreaViewProps, 'mode'>
+  } & Omit<SafeAreaViewProps, "mode">
 >;
 
 function SafeScreen({
@@ -29,7 +29,7 @@ function SafeScreen({
     <SafeAreaView {...props} mode="padding" style={[layout.flex_1, style]}>
       <StatusBar
         backgroundColor={navigationTheme.colors.background}
-        barStyle={variant === 'dark' ? 'light-content' : 'dark-content'}
+        barStyle={variant === "dark" ? "light-content" : "dark-content"}
       />
       <ErrorBoundary onReset={onResetError}>
         {isError ? <DefaultError onReset={onResetError} /> : children}
