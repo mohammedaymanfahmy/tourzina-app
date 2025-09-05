@@ -5,17 +5,26 @@ import React from 'react'
 <AppTitle type="title" content="This is a title" />
 <AppTitle type="subtitle" content="This is a subtitle" />
 <AppTitle type="label" content="This is a label" />
- */
+
+// You can override styles:
+<AppTitle type="title" content="Custom Title" style={{ color: 'red', fontSize: 30 }} />
+<AppTitle type="subtitle" content="Custom Subtitle" style={{ fontWeight: 'bold', color: '#333' }} />
+*/
+
+
+import { StyleProp, TextStyle } from 'react-native';
 
 type Props = {
     type: string,
-    content: string
+    content: string,
+    style?: StyleProp<TextStyle>
 }
 
-export default function AppTitle({ type, content }: Props) {
+export default function AppTitle({ type, content, style }: Props) {
+    const baseStyle = type === 'title' ? styles.title : type === 'subtitle' ? styles.subtitle : styles.label;
     return (
         <View style={styles.container}>
-            <Text style={type === 'title' ? styles.title : type === 'subtitle' ? styles.subtitle : styles.label}>{content}</Text>
+            <Text style={[baseStyle, style]}>{content}</Text>
         </View>
     )
 }

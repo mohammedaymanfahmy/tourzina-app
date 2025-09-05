@@ -23,7 +23,7 @@ import {
 // and any other image props except style or source because they are predefined
 
 type AppImageProps = {
-  source: ImageSourcePropType;
+  source: any;
   style?: StyleProp<ImageStyle>;
   containerStyle?: StyleProp<any>;
 } & Omit<ImageProps, "source" | "style">;
