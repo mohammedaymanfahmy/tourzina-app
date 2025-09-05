@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import AppInput from "../../atoms/AppInput";
 import colors from "../../../colors/colors";
+import { wp, hp } from "../../../utils/Dimensions";
 
 interface LabeledInputProps {
   label: string;
@@ -75,13 +76,13 @@ const LabeledInput: React.FC<LabeledInputProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 16,
+    marginBottom: hp(16),
   },
   labelContainer: {
-    marginBottom: 8,
+    marginBottom: hp(8),
   },
   label: {
-    fontSize: 16,
+    fontSize: wp(16),
     fontWeight: "500",
     color: colors.white,
   },
@@ -92,11 +93,11 @@ const styles = StyleSheet.create({
     // Container for input styling if needed
   },
   errorContainer: {
-    marginTop: 4,
-    paddingHorizontal: 4,
+    marginTop: hp(4),
+    paddingHorizontal: wp(4),
   },
   errorText: {
-    fontSize: 12,
+    fontSize: wp(12),
     color: colors.error,
   },
 });

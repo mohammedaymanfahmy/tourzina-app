@@ -1,6 +1,7 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import colors from "../../../colors/colors";
+import { wp, hp } from "../../../utils/Dimensions";
 
 interface BackButtonProps {
   onPress: () => void;
@@ -40,13 +41,13 @@ const BackButton: React.FC<BackButtonProps> = ({
 const styles = StyleSheet.create({
   container: {
     alignSelf: "flex-start",
-    paddingVertical: 8,
-    paddingHorizontal: 4,
+    paddingVertical: hp(8),
+    paddingHorizontal: wp(4),
   },
   content: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: wp(8),
   },
   arrow: {
     fontWeight: "bold",

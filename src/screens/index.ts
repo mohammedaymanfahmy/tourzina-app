@@ -5,3 +5,4 @@ export { default as SignInScreen } from "./SignIn/SignInScreen";
 export { default as ForgotPasswordScreen } from "./ForgotPassword/ForgotPasswordScreen";
 export { default as NewPasswordScreen } from "./NewPassword/NewPasswordScreen";
 export { default as OTPVerificationScreen } from "./OTPVerification/OTPVerificationScreen";
+export { default as HomeScreen } from "./Home/HomeScreen";

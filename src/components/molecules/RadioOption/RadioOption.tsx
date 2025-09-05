@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import RadioButton from "../../atoms/RadioButton/RadioButton";
 import colors from "../../../colors/colors";
+import { wp, hp } from "../../../utils/Dimensions";
 
 interface RadioOptionProps {
   label: string;
@@ -36,7 +37,7 @@ const RadioOption: React.FC<RadioOptionProps> = ({
   labelStyle,
   radioButtonStyle,
   layout = "horizontal",
-  gap = 12,
+  gap = wp(12),
 }) => {
   const containerStyle =
     layout === "horizontal"
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     // Dynamic styles applied inline
   },
   label: {
-    fontSize: 16,
+    fontSize: wp(16),
     fontWeight: "400",
     flex: 1, // Takes remaining space in horizontal layout
   },

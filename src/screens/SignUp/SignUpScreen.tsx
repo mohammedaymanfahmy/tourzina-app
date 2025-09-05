@@ -15,6 +15,7 @@ import { LabeledInput, RadioOption } from "../../components/molecules";
 import AppTitle from "../../components/atoms/title/AppTitle";
 import colors from "../../colors/colors";
 import { Image } from "react-native";
+import { wp, hp } from "../../utils/Dimensions";
 
 interface SignUpFormData {
   fullName: string;
@@ -329,80 +330,80 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 24,
-    paddingBottom: 32,
+    paddingHorizontal: wp(24),
+    paddingBottom: hp(32),
   },
   header: {
     alignItems: "center",
-    marginTop: 32,
-    marginBottom: 32,
+    marginTop: hp(32),
+    marginBottom: hp(32),
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: wp(16),
     color: colors.gray60,
-    marginTop: 8,
+    marginTop: hp(8),
     textAlign: "center",
   },
   form: {
     flex: 1,
   },
   accountTypeSection: {
-    marginBottom: 24,
+    marginBottom: hp(24),
   },
   sectionLabel: {
-    fontSize: 16,
+    fontSize: wp(16),
     fontWeight: "500",
     color: colors.white,
-    marginBottom: 12,
+    marginBottom: hp(12),
   },
   radioGroup: {
-    gap: 12,
+    gap: hp(12),
   },
   radioOption: {
-    paddingVertical: 4,
+    paddingVertical: hp(4),
   },
   termsSection: {
-    marginBottom: 32,
+    marginBottom: hp(32),
   },
   termsLabel: {
-    fontSize: 14,
-    lineHeight: 20,
+    fontSize: wp(14),
+    lineHeight: hp(20),
   },
   errorText: {
-    fontSize: 12,
+    fontSize: wp(12),
     color: colors.error,
-    marginTop: 4,
-    marginLeft: 32, // Align with text after radio button
+    marginTop: hp(4),
+    marginLeft: wp(32), // Align with text after radio button
   },
   signUpButton: {
-    marginBottom: 24,
+    marginBottom: hp(24),
   },
   divider: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 24,
+    marginVertical: hp(24),
   },
   dividerLine: {
     flex: 1,
-    height: 1,
+    height: hp(1),
     backgroundColor: colors.borderColor,
   },
   dividerText: {
     color: colors.gray60,
-    fontSize: 14,
-    marginHorizontal: 16,
+    fontSize: wp(14),
+    marginHorizontal: wp(16),
   },
   socialButtons: {
     flexDirection: "row",
     justifyContent: "center",
-    gap: 16,
-    marginBottom: 32,
+    gap: wp(16),
+    marginBottom: hp(32),
   },
   signInSection: {
     alignItems: "center",
   },
   signInText: {
-    fontSize: 14,
+    fontSize: wp(14),
     color: colors.gray60,
   },
   signInLink: {

@@ -14,6 +14,7 @@ import BackButton from "../../components/atoms/BackButton/BackButton";
 import OTPInput from "../../components/atoms/OTPInput/OTPInput";
 import AppTitle from "../../components/atoms/title/AppTitle";
 import colors from "../../colors/colors";
+import { wp, hp } from "../../utils/Dimensions";
 
 interface OTPVerificationScreenProps {
   onGoBack?: () => void;
@@ -225,65 +226,65 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 24,
-    paddingBottom: 32,
+    paddingHorizontal: wp(24),
+    paddingBottom: hp(32),
   },
   header: {
     alignItems: "center",
-    marginTop: 48,
-    marginBottom: 40,
+    marginTop: hp(48),
+    marginBottom: hp(40),
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: wp(16),
     color: colors.gray60,
-    marginTop: 8,
+    marginTop: hp(8),
     textAlign: "center",
-    lineHeight: 22,
-    paddingHorizontal: 16,
+    lineHeight: hp(22),
+    paddingHorizontal: wp(16),
   },
   otpContainer: {
     alignItems: "center",
-    marginBottom: 32,
+    marginBottom: hp(32),
   },
   resendContainer: {
     alignItems: "center",
-    marginBottom: 32,
+    marginBottom: hp(32),
   },
   timerText: {
-    fontSize: 14,
+    fontSize: wp(14),
     color: colors.gray60,
   },
   resendText: {
-    fontSize: 14,
+    fontSize: wp(14),
     color: colors.primary,
     fontWeight: "600",
   },
   verifyButton: {
-    marginBottom: 24,
+    marginBottom: hp(24),
   },
   helpText: {
-    fontSize: 14,
+    fontSize: wp(14),
     color: colors.gray60,
     textAlign: "center",
-    lineHeight: 20,
-    marginBottom: 32,
+    lineHeight: hp(20),
+    marginBottom: hp(32),
   },
   testInfo: {
     backgroundColor: colors.gray10,
-    borderRadius: 12,
-    padding: 16,
+    borderRadius: wp(12),
+    padding: wp(16),
     alignItems: "center",
   },
   testTitle: {
-    fontSize: 14,
+    fontSize: wp(14),
     fontWeight: "600",
     color: colors.primary,
-    marginBottom: 8,
+    marginBottom: hp(8),
   },
   testText: {
-    fontSize: 12,
+    fontSize: wp(12),
     color: colors.gray60,
-    marginBottom: 2,
+    marginBottom: hp(2),
   },
 });
 

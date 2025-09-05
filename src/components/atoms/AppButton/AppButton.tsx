@@ -9,6 +9,7 @@ import {
   TextStyle,
   ViewStyle,
 } from "react-native";
+import { wp, hp } from "../../../utils/Dimensions";
 
 type Size = "sm" | "md" | "lg";
 type Variant =
@@ -19,9 +20,9 @@ type Variant =
   | "contained-tonal";
 
 const SIZES: Record<Size, { h: number; px: number; fs: number }> = {
-  sm: { h: 40, px: 16, fs: 14 },
-  md: { h: 48, px: 24, fs: 16 },
-  lg: { h: 52, px: 32, fs: 18 },
+  sm: { h: hp(40), px: wp(16), fs: 14 },
+  md: { h: hp(48), px: wp(24), fs: 16 },
+  lg: { h: hp(52), px: wp(32), fs: 18 },
 };
 
 export interface AppButtonProps {
@@ -118,7 +119,7 @@ const AppButton: React.FC<AppButtonProps> = ({
         {
           height: h,
           paddingHorizontal: px,
-          borderRadius: 21,
+          borderRadius: wp(21),
           backgroundColor: bg,
           borderWidth: borderW,
           borderColor: borderC,

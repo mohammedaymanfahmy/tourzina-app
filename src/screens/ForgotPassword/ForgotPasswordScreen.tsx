@@ -13,6 +13,7 @@ import BackButton from "../../components/atoms/BackButton/BackButton";
 import { LabeledInput } from "../../components/molecules";
 import AppTitle from "../../components/atoms/title/AppTitle";
 import colors from "../../colors/colors";
+import { wp, hp } from "../../utils/Dimensions";
 
 interface ForgotPasswordFormData {
   email: string;
@@ -160,31 +161,31 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 24,
-    paddingBottom: 32,
+    paddingHorizontal: wp(24),
+    paddingBottom: hp(32),
   },
   header: {
     alignItems: "center",
-    marginTop: 48,
-    marginBottom: 40,
+    marginTop: hp(48),
+    marginBottom: hp(40),
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: wp(16),
     color: colors.gray60,
-    marginTop: 8,
+    marginTop: hp(8),
     textAlign: "center",
-    lineHeight: 22,
-    paddingHorizontal: 16,
+    lineHeight: hp(22),
+    paddingHorizontal: wp(16),
   },
   form: {
     flex: 1,
   },
   continueButton: {
-    marginTop: 8,
-    marginBottom: 32,
+    marginTop: hp(8),
+    marginBottom: hp(32),
   },
   helpText: {
-    fontSize: 14,
+    fontSize: wp(14),
     color: colors.gray60,
     textAlign: "center",
   },

@@ -1,6 +1,7 @@
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import colors from "../../../colors/colors";
+import { wp, hp } from "../../../utils/Dimensions";
 
 interface RadioButtonProps {
   selected: boolean;
@@ -11,9 +12,9 @@ interface RadioButtonProps {
 }
 
 const SIZES = {
-  sm: { outer: 16, inner: 8 },
-  md: { outer: 20, inner: 10 },
-  lg: { outer: 24, inner: 12 },
+  sm: { outer: wp(16), inner: wp(8) },
+  md: { outer: wp(20), inner: wp(10) },
+  lg: { outer: wp(24), inner: wp(12) },
 };
 
 const RadioButton: React.FC<RadioButtonProps> = ({

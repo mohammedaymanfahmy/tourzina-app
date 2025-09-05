@@ -8,6 +8,7 @@ import {
   ViewStyle,
 } from "react-native";
 import colors from "../../../colors/colors";
+import { wp, hp } from "../../../utils/Dimensions";
 
 interface OTPInputProps {
   length?: number;
@@ -123,17 +124,17 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: "row",
-    gap: 12,
+    gap: wp(12),
   },
   input: {
-    width: 56,
-    height: 56,
-    borderRadius: 12,
-    borderWidth: 2,
+    width: wp(56),
+    height: hp(56),
+    borderRadius: wp(12),
+    borderWidth: wp(2),
     borderColor: colors.borderColor,
     backgroundColor: "#000000",
     color: colors.white,
-    fontSize: 24,
+    fontSize: wp(24),
     fontWeight: "600",
     textAlign: "center",
   },
@@ -145,9 +146,9 @@ const styles = StyleSheet.create({
     borderColor: colors.error,
   },
   errorText: {
-    fontSize: 12,
+    fontSize: wp(12),
     color: colors.error,
-    marginTop: 8,
+    marginTop: hp(8),
     textAlign: "center",
   },
 });

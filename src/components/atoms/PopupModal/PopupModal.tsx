@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import AppButton from "../AppButton/AppButton";
 import colors from "../../../colors/colors";
+import { wp, hp } from "../../../utils/Dimensions";
 
 interface PopupButton {
   label: string;
@@ -102,47 +103,47 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 24,
+    paddingHorizontal: wp(24),
   },
   modal: {
     backgroundColor: colors.background,
-    borderRadius: 16,
-    paddingVertical: 24,
-    paddingHorizontal: 24,
-    maxWidth: screenWidth - 48,
-    minWidth: 280,
+    borderRadius: wp(16),
+    paddingVertical: hp(24),
+    paddingHorizontal: wp(24),
+    maxWidth: screenWidth - wp(48),
+    minWidth: wp(280),
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: hp(4),
     },
     shadowOpacity: 0.25,
-    shadowRadius: 8,
+    shadowRadius: wp(8),
     elevation: 8,
   },
   iconContainer: {
-    marginBottom: 16,
+    marginBottom: hp(16),
     alignItems: "center",
     justifyContent: "center",
   },
   title: {
-    fontSize: 20,
+    fontSize: wp(20),
     fontWeight: "600",
     color: colors.white,
     textAlign: "center",
-    marginBottom: 8,
+    marginBottom: hp(8),
   },
   description: {
-    fontSize: 16,
+    fontSize: wp(16),
     color: colors.gray60,
     textAlign: "center",
-    lineHeight: 22,
-    marginBottom: 24,
+    lineHeight: hp(22),
+    marginBottom: hp(24),
   },
   buttonContainer: {
     width: "100%",
-    gap: 12,
+    gap: hp(12),
   },
   button: {
     marginBottom: 0,

@@ -13,6 +13,7 @@ import BackButton from "../../components/atoms/BackButton/BackButton";
 import { LabeledInput } from "../../components/molecules";
 import AppTitle from "../../components/atoms/title/AppTitle";
 import colors from "../../colors/colors";
+import { wp, hp } from "../../utils/Dimensions";
 
 interface NewPasswordFormData {
   password: string;
@@ -184,45 +185,45 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 24,
-    paddingBottom: 32,
+    paddingHorizontal: wp(24),
+    paddingBottom: hp(32),
   },
   header: {
     alignItems: "center",
-    marginTop: 48,
-    marginBottom: 40,
+    marginTop: hp(48),
+    marginBottom: hp(40),
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: wp(16),
     color: colors.gray60,
-    marginTop: 8,
+    marginTop: hp(8),
     textAlign: "center",
-    lineHeight: 22,
-    paddingHorizontal: 16,
+    lineHeight: hp(22),
+    paddingHorizontal: wp(16),
   },
   form: {
     flex: 1,
   },
   requirementsContainer: {
     backgroundColor: colors.gray10,
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 32,
+    borderRadius: wp(12),
+    padding: wp(16),
+    marginBottom: hp(32),
   },
   requirementsTitle: {
-    fontSize: 14,
+    fontSize: wp(14),
     fontWeight: "600",
     color: colors.white,
-    marginBottom: 8,
+    marginBottom: hp(8),
   },
   requirement: {
-    fontSize: 14,
+    fontSize: wp(14),
     color: colors.gray60,
-    marginBottom: 4,
-    lineHeight: 20,
+    marginBottom: hp(4),
+    lineHeight: hp(20),
   },
   resetButton: {
-    marginBottom: 24,
+    marginBottom: hp(24),
   },
 });
 
