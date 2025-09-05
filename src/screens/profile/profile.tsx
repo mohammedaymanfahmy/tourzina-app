@@ -13,7 +13,8 @@ import {
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import BottomBar from "../../components/bottomBar/bottomBar";
 
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+
 export default function Profile() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
@@ -32,58 +33,37 @@ export default function Profile() {
   const handleCancelLogout = () => {
     setShowLogoutModal(false);
   };
+
   const menuItems = [
     {
       id: 1,
       title: "Your Card",
       icon: <FontAwesome name="credit-card" size={20} color="#b1b5c3" />,
+      onPress: () => navigation.navigate("UserCards" as never), 
     },
     {
       id: 2,
       title: "Security",
       icon: <FontAwesome name="shield" size={23} color="#b1b5c3" />,
+      onPress: () => navigation.navigate("Security" as never),
     },
     {
       id: 3,
       title: "Notification",
       icon: <FontAwesome name="bell" size={20} color="#b1b5c3" />,
+      onPress: () => navigation.navigate("Notifications" as never),
     },
     {
       id: 4,
       title: "Languages",
       icon: <FontAwesome name="globe" size={20} color="#b1b5c3" />,
+      onPress: () => navigation.navigate("Language" as never),
     },
     {
       id: 5,
       title: "Help and Support",
       icon: <FontAwesome name="question" size={20} color="#b1b5c3" />,
-    },
-  ];
-
-  const bottomTabs = [
-    {
-      id: 1,
-      title: "Home",
-      icon: <FontAwesome name="home" size={20} color="#b1b5c3" />,
-      active: false,
-    },
-    {
-      id: 2,
-      title: "My Booking",
-      icon: <FontAwesome name="table" size={20} color="#b1b5c3" />,
-      active: false,
-    },
-    {
-      id: 3,
-      title: "Message",
-      icon: <FontAwesome name="envelope" size={20} color="#b1b5c3" />,
-      active: false,
-    },
-    {
-      id: 4,
-      title: "Profile",
-      icon: <FontAwesome name="user" size={20} color="#3b71fe" />,
-      active: true,
+      onPress: () => navigation.navigate("HelpAndSupport" as never),
     },
   ];
 
@@ -110,12 +90,11 @@ export default function Profile() {
             <Text style={styles.profileName}>Yousef Ebada</Text>
             <Text style={styles.profileUsername}>Yousef_Ebada</Text>
           </View>
-          <TouchableOpacity style={styles.editButton}>
-            <FontAwesome name="edit" size={25} color="#b1b5c3" 
-                onPress={() => {navigation.navigate("PersonalInfo" as never);
-                }}
-            />
-
+          <TouchableOpacity
+            style={styles.editButton}
+            onPress={() => navigation.navigate("PersonalInfo" as never)}
+          >
+            <FontAwesome name="edit" size={25} color="#b1b5c3" />
           </TouchableOpacity>
         </View>
 
@@ -123,7 +102,11 @@ export default function Profile() {
         <View style={styles.settingsSection}>
           <Text style={styles.sectionTitle}>Settings</Text>
           {menuItems.map((item) => (
-            <TouchableOpacity key={item.id} style={styles.menuItem}>
+            <TouchableOpacity
+              key={item.id}
+              style={styles.menuItem}
+              onPress={item.onPress}
+            >
               <View style={styles.menuItemLeft}>
                 <View style={styles.iconContainer}>{item.icon}</View>
                 <Text style={styles.menuItemText}>{item.title}</Text>
@@ -134,7 +117,10 @@ export default function Profile() {
         </View>
 
         {/* Logout Button */}
-        <TouchableOpacity style={styles.logoutButton} onPress={handleLogoutPress}>
+        <TouchableOpacity
+          style={styles.logoutButton}
+          onPress={handleLogoutPress}
+        >
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -183,6 +169,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#131315",
+    paddingTop: StatusBar.currentHeight,
+    // paddingTop: 10,
   },
   scrollContent: {
     paddingBottom: 120, // space so logout button doesn't hide under bottom nav
@@ -288,16 +276,12 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#f41f52",
   },
-
-  // Modal Styles
-
   modalOverlay: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
-
   modalContainer: {
     width: "80%",
     backgroundColor: "#2a2a2a",
@@ -305,7 +289,6 @@ const styles = StyleSheet.create({
     padding: 30,
     alignItems: "center",
   },
-
   modalIcon: {
     width: 60,
     height: 60,
@@ -317,20 +300,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
   },
-
   questionMark: {
     fontSize: 30,
     fontWeight: "bold",
     color: "#ff4757",
   },
-
   modalTitle: {
     fontSize: 20,
     fontWeight: "600",
     color: "#ffffff",
     marginBottom: 8,
   },
-
   modalSubtitle: {
     fontSize: 14,
     color: "#b1b5c3",

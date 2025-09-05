@@ -14,13 +14,14 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import BackBtn from "../../components/backBtn/backBtn";
 
 function PersonalInfo() {
   const [formData, setFormData] = useState({
-    firstName: "Gustavo",
-    lastName: "Lipshutz",
-    email: "Gustavolipshutz@gmail.com",
-    phone: "+19003430",
+    firstName: "Yousef",
+    lastName: "Ebada",
+    email: "yousefomar6464@gmail.com",
+    phone: "+2001096766428",
   });
 
   const navigation = useNavigation();
@@ -55,9 +56,7 @@ function PersonalInfo() {
         >
           {/* Header */}
           <View style={styles.header}>
-            <TouchableOpacity style={styles.backButton} onPress={handleGoBack}>
-              <Text style={styles.backIcon}>←</Text>
-            </TouchableOpacity>
+            <BackBtn />
             <Text style={styles.headerTitle}>Personal Info</Text>
             <TouchableOpacity style={styles.editButton}>
               <FontAwesome name="edit" size={20} color="#b1b5c3" />
@@ -134,6 +133,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#141416",
+    paddingTop: StatusBar.currentHeight,
   },
   header: {
     flexDirection: "row",
@@ -205,6 +205,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 30,
   },
   saveButtonText: {
     fontSize: 16,

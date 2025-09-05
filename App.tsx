@@ -11,6 +11,11 @@ import BottomBar from "./src/components/bottomBar/bottomBar";
 import Home from "./src/screens/Home/home";
 import Booking from "./src/screens/Booking/booking";
 import Message from "./src/screens/Message/message";
+import LanguageScreen from "./src/screens/profile/language";
+import Notifications from "./src/screens/profile/notifications";
+import HelpAndSupport from "./src/screens/profile/help";
+import Security from "./src/screens/profile/security";
+import UserCards from "./src/screens/profile/creditCard";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +32,11 @@ export default function App() {
         <Stack.Screen name="Booking" component={Booking} />
         <Stack.Screen name="Message" component={Message} />
         <Stack.Screen name="PersonalInfo" component={PersonalInfo} />
+        <Stack.Screen name="Language" component={LanguageScreen} />        
+        <Stack.Screen name="Notifications" component={Notifications} /> 
+        <Stack.Screen name="HelpAndSupport" component={HelpAndSupport} />  
+        <Stack.Screen name="Security" component={Security} />   
+        <Stack.Screen name="UserCards" component={UserCards} />  
       </Stack.Navigator>
     </NavigationContainer>
     // <View style={styles.container}>
