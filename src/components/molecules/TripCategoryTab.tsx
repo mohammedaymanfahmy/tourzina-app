@@ -1,27 +1,49 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+
+import React from 'react';
+import { View, StyleProp, ViewStyle, ImageStyle, TextStyle } from 'react-native';
 import AppImage from '../atoms/Image/AppImage';
 import AppTitle from '../atoms/title/AppTitle';
 
-/* Example Usage:
-    <TripCategoryTab 
-    imageUrl={"https://up.yimg.com/ib/th/id/OIP.CjuJhR9wS4jD9R183-cdDwHaEK?pid=Api&rs=1&c=1&qlt=95&w=198&h=111"} 
-    title={"Example Title"} 
-    />
-*/
+/**
+ * Example Usage:
+ * <TripCategoryTab
+ *   viewStyle={{ margin: 8 }}
+ *   imageStyle={{ width: 120, height: 120, borderRadius: 60 }}
+ *   titleStyle={{ color: '#333', fontSize: 16 }}
+ *   imageUrl={require('../../../assets/facebook.png')}
+ *   title={'Camping'}
+ * />
+ *
+ * <TripCategoryTab
+ *   imageUrl={'https://example.com/image.png'}
+ *   title={'Remote Image'}
+ * />
+ */
 
 type TripCategoryTabProps = {
-    imageUrl: string,
-    title: string
-}
+    viewStyle?: StyleProp<ViewStyle>;
+    imageStyle?: StyleProp<ImageStyle>;
+    titleStyle?: StyleProp<TextStyle>;
+    imageUrl: string | number; // number for require(), string for remote
+    title: string;
+};
 
-const TripCategoryTab = ({ imageUrl, title }: TripCategoryTabProps) => {
+const TripCategoryTab: React.FC<TripCategoryTabProps> = ({
+    viewStyle,
+    imageStyle,
+    titleStyle,
+    imageUrl,
+    title,
+}) => {
+    // Determine source type for AppImage
+    const source = typeof imageUrl === 'string' ? { uri: imageUrl } : imageUrl;
+
     return (
-        <View style={{ gap: 10 }}>
-            <AppImage source={{ uri: imageUrl }} style={{ width: 100, height: 100, borderRadius: 50 }} />
-            <AppTitle content={title} type={'subtitle'} />
+        <View style={[{ gap: 10, alignItems: 'center' }, viewStyle]}>
+            <AppImage source={source} style={[{ width: 60, height: 60, borderRadius: 50 }, imageStyle]} />
+            <AppTitle content={title} type={'subtitle'} style={titleStyle} />
         </View>
-    )
-}
+    );
+};
 
 export default TripCategoryTab;
