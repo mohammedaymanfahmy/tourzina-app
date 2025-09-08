@@ -16,7 +16,8 @@ import AppTitle from "../../components/atoms/title/AppTitle";
 import colors from "../../colors/colors";
 import { Image } from "react-native";
 import { wp, hp } from "../../utils/Dimensions";
-
+import { useNavigation } from "@react-navigation/core";
+import { Paths } from "@/navigation/paths";
 interface SignUpFormData {
   fullName: string;
   email: string;
@@ -25,7 +26,6 @@ interface SignUpFormData {
   accountType: "personal" | "business";
   agreeToTerms: boolean;
 }
-
 interface SignUpFormErrors {
   fullName?: string;
   email?: string;
@@ -33,13 +33,11 @@ interface SignUpFormErrors {
   confirmPassword?: string;
   agreeToTerms?: string;
 }
-
 interface SignUpScreenProps {
   onNavigateToSignIn?: () => void;
   onGoBack?: () => void;
   onSignUpSuccess?: (email: string) => void;
 }
-
 const SignUpScreen: React.FC<SignUpScreenProps> = ({
   onNavigateToSignIn,
   onGoBack,
@@ -106,9 +104,7 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({
       // Simulate API call
       try {
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        if (onSignUpSuccess) {
-          onSignUpSuccess(formData.email);
-        }
+        navigation.navigate(Paths.OTPVerification, { formData.email, purpose: "signup" });
       } catch (error) {
         console.error("Sign up error:", error);
       } finally {
@@ -133,13 +129,13 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({
           showsVerticalScrollIndicator={false}
         >
           {/* Back Button */}
-          {onGoBack && (
+          {
             <BackButton
-              onPress={onGoBack}
+              onPress={() => navigation.goBack()}
               label="Back"
               color={colors.primary}
             />
-          )}
+          }
 
           {/* Header */}
           <View style={styles.header}>
@@ -304,10 +300,7 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({
                 Already have an account?{" "}
                 <Text
                   style={styles.signInLink}
-                  onPress={
-                    onNavigateToSignIn ||
-                    (() => console.log("Navigate to Sign In"))
-                  }
+                  onPress={() => navigation.navigate(Paths.SignIn as never)}
                 >
                   Sign In
                 </Text>
@@ -319,6 +312,12 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({
     </SafeAreaView>
   );
 };
+
+// onNavigateToSignIn = {() => navigation.navigate("SignIn")}
+// onGoBack = {() => navigation.canGoBack() && navigation.goBack()}
+// onSignUpSuccess = {(email: string) => navigation.navigate("OTPVerification", { email, purpose: "signup" })}
+
+const navigation = useNavigation();
 
 const styles = StyleSheet.create({
   container: {
