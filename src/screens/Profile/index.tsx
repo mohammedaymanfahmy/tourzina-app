@@ -14,6 +14,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import BottomBar from "../../components/bottomBar/bottomBar";
 
 import { useNavigation } from "@react-navigation/native";
+import { Paths } from "@/navigation/paths";
 
 export default function Profile() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -39,36 +40,36 @@ export default function Profile() {
       id: 1,
       title: "Your Card",
       icon: <FontAwesome name="credit-card" size={20} color="#b1b5c3" />,
-      onPress: () => navigation.navigate("UserCards" as never), 
+      onPress: () => navigation.navigate(Paths.UserCards),
     },
     {
       id: 2,
       title: "Security",
       icon: <FontAwesome name="shield" size={23} color="#b1b5c3" />,
-      onPress: () => navigation.navigate("Security" as never),
+      onPress: () => navigation.navigate(Paths.Security),
     },
     {
       id: 3,
       title: "Notification",
       icon: <FontAwesome name="bell" size={20} color="#b1b5c3" />,
-      onPress: () => navigation.navigate("Notifications" as never),
+      onPress: () => navigation.navigate(Paths.Notifications),
     },
     {
       id: 4,
       title: "Languages",
       icon: <FontAwesome name="globe" size={20} color="#b1b5c3" />,
-      onPress: () => navigation.navigate("Language" as never),
+      onPress: () => navigation.navigate(Paths.LanguageScreen),
     },
     {
       id: 5,
       title: "Help and Support",
       icon: <FontAwesome name="question" size={20} color="#b1b5c3" />,
-      onPress: () => navigation.navigate("HelpAndSupport" as never),
+      onPress: () => navigation.navigate(Paths.HelpAndSupport),
     },
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#1a1a1a" />
 
       {/* Scrollable Content */}
@@ -158,10 +159,7 @@ export default function Profile() {
           </View>
         </View>
       </Modal>
-
-      {/* Fixed Bottom Navigation */}
-      <BottomBar />
-    </SafeAreaView>
+    </View>
   );
 }
 

@@ -6,6 +6,14 @@ export type RootScreenProps<
 > = StackScreenProps<RootStackParamList, S>;
 
 export type RootStackParamList = {
-  [Paths.Example]: undefined;
-  [Paths.Startup]: undefined;
+  [Paths.Home]: undefined;
+  [Paths.Profile]: undefined;
+  [Paths.Booking]: undefined;
+  [Paths.Message]: undefined;
+  [Paths.PersonalInfo]: undefined;
+  [Paths.LanguageScreen]: undefined;
+  [Paths.Notifications]: undefined;
+  [Paths.HelpAndSupport]: undefined;
+  [Paths.Security]: undefined;
+  [Paths.UserCards]: undefined;
 };
