@@ -4,17 +4,16 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   Image,
   ScrollView,
   Modal,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import BottomBar from "../../components/bottomBar/bottomBar";
 
 import { useNavigation } from "@react-navigation/native";
 import { Paths } from "@/navigation/paths";
+import { hp, wp } from "@/utils/Dimensions";
 
 export default function Profile() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -67,10 +66,8 @@ export default function Profile() {
       onPress: () => navigation.navigate(Paths.HelpAndSupport),
     },
   ];
-
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1a1a1a" />
 
       {/* Scrollable Content */}
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -93,7 +90,7 @@ export default function Profile() {
           </View>
           <TouchableOpacity
             style={styles.editButton}
-            onPress={() => navigation.navigate("PersonalInfo" as never)}
+            onPress={() => navigation.navigate(Paths.PersonalInfo)}
           >
             <FontAwesome name="edit" size={25} color="#b1b5c3" />
           </TouchableOpacity>
@@ -171,15 +168,15 @@ const styles = StyleSheet.create({
     // paddingTop: 10,
   },
   scrollContent: {
-    paddingBottom: 120, // space so logout button doesn't hide under bottom nav
+    paddingBottom: hp(120), // space so logout button doesn't hide under bottom nav
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    borderBottomWidth: 1,
+    paddingHorizontal: wp(20),
+    paddingVertical: hp(15),
+    borderBottomWidth: wp(1),
     borderBottomColor: "#333",
   },
   headerTitle: {
@@ -198,12 +195,13 @@ const styles = StyleSheet.create({
     borderBottomColor: "#333",
   },
   avatarContainer: {
-    marginRight: 15,
+    marginRight: wp(15),
   },
   avatarImg: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: wp(50),
+    height: hp(60),
+    borderRadius: hp(50),
+    // backgroundColor: "red",
   },
   profileInfo: {
     flex: 1,

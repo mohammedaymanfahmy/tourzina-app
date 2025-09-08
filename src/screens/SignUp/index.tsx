@@ -55,6 +55,7 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({
   const [errors, setErrors] = useState<SignUpFormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
 
+  const navigation = useNavigation();
   const handleInputChange = (
     field: keyof SignUpFormData,
     value: string | boolean
@@ -104,7 +105,7 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({
       // Simulate API call
       try {
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        navigation.navigate(Paths.OTPVerification, { formData.email, purpose: "signup" });
+        // navigation.navigate(Paths.OTPVerification, { formData.email, purpose: "signup" });
       } catch (error) {
         console.error("Sign up error:", error);
       } finally {
@@ -317,7 +318,6 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({
 // onGoBack = {() => navigation.canGoBack() && navigation.goBack()}
 // onSignUpSuccess = {(email: string) => navigation.navigate("OTPVerification", { email, purpose: "signup" })}
 
-const navigation = useNavigation();
 
 const styles = StyleSheet.create({
   container: {
