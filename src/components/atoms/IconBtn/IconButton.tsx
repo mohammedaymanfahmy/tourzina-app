@@ -5,6 +5,7 @@ import {
   StyleProp,
   StyleSheet,
   ViewStyle,
+  GestureResponderEvent,
 } from "react-native";
 import colors from "../../../colors/colors";
 
@@ -13,7 +14,7 @@ type Variant = "icon" | "outlined" | "contained" | "elevated" | "contained-tonal
 
 export interface IconButtonProps {
   icon: React.ReactNode | ((p: { color: string; size: number }) => React.ReactNode);
-  onPress?: () => void; 
+  onPress?: (e?: GestureResponderEvent) => void; 
   size?: Size;
   iconsize?: number;
   variant?: Variant;
@@ -31,6 +32,7 @@ export interface IconButtonProps {
   iconpadding?: number; 
   style?: StyleProp<ViewStyle>;
   accessibilityLabel?: string;
+  stopPropagation?: boolean; // if true, stop press propagation to parents
 }
 
 const SIZES: Record<Size, { side: number; icon: number }> = {
@@ -76,6 +78,7 @@ const IconButton: React.FC<IconButtonProps> = ({
   iconpadding,
   style,
   accessibilityLabel,
+  stopPropagation = false,
 }) => {
   const { side, icon: iconSize } = SIZES[size];
   const pad = Math.max(iconpadding ?? Math.ceil(iconSize * 0.25), 6);
@@ -127,11 +130,16 @@ const IconButton: React.FC<IconButtonProps> = ({
       ? React.cloneElement(icon as any, { color: fg, size: iconSize })
       : icon;
 
+  const handlePress = (e: GestureResponderEvent) => {
+    if (stopPropagation && e?.stopPropagation) e.stopPropagation();
+    onPress?.(e);
+  };
+
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
-      onPress={onPress}
+      onPress={handlePress}
       disabled={disabled || loading}
       style={({ pressed }) => [
         styles.base,
