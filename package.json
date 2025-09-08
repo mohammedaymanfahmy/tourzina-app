@@ -30,8 +30,13 @@
     "react-native-mmkv": "^3.3.1",
     "react-native-reanimated": "~3.17.4",
     "react-native-screens": "~4.11.1",
+<<<<<<< HEAD
     "react-native-swiper": "^1.6.0",
     "react-native-vector-icons": "^10.3.0",
+=======
+    "react-native-svg": "15.11.2",
+    "react-native-swiper": "^1.6.0",
+>>>>>>> 07fd0072cdeb4b0d80fc6890c76c2917453ff7e0
     "react-native-web": "^0.20.0",
     "zod": "^4.1.5",
     "zustand": "^5.0.8"
@@ -42,6 +47,8 @@
     "@types/jest": "^30.0.0",
     "@types/react": "~19.0.10",
     "@types/react-native-vector-icons": "^6.4.18",
+    "@types/react-native": "^0.72.8",
+    "@types/react-native-swiper": "^1.5.10",
     "typescript": "~5.8.3"
   },
   "private": true
