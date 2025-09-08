@@ -19,4 +19,5 @@ export const enum Paths {
   ForgotPassword = 'ForgotPassword',
   NewPassword = 'NewPassword',
   OTPVerification = 'OTPVerification',
+  NavStack = 'NavStack',
 }

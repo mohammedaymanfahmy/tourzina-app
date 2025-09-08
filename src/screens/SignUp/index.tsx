@@ -39,9 +39,7 @@ interface SignUpScreenProps {
   onSignUpSuccess?: (email: string) => void;
 }
 const SignUpScreen: React.FC<SignUpScreenProps> = ({
-  onNavigateToSignIn,
-  onGoBack,
-  onSignUpSuccess,
+
 }) => {
   const [formData, setFormData] = useState<SignUpFormData>({
     fullName: "",

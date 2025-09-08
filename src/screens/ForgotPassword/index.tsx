@@ -14,6 +14,8 @@ import { LabeledInput } from "../../components/molecules";
 import AppTitle from "../../components/atoms/title/AppTitle";
 import colors from "../../colors/colors";
 import { wp, hp } from "../../utils/Dimensions";
+import { useNavigation } from "@react-navigation/native";
+import { Paths } from "@/navigation/paths";
 
 interface ForgotPasswordFormData {
   email: string;
@@ -29,7 +31,6 @@ interface ForgotPasswordScreenProps {
 }
 
 const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({
-  onGoBack,
   onContinue,
 }) => {
   const [formData, setFormData] = useState<ForgotPasswordFormData>({
@@ -38,6 +39,9 @@ const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({
 
   const [errors, setErrors] = useState<ForgotPasswordFormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigation = useNavigation()
+
 
   const handleInputChange = (
     field: keyof ForgotPasswordFormData,
@@ -93,9 +97,9 @@ const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({
           showsVerticalScrollIndicator={false}
         >
           {/* Back Button */}
-          {onGoBack && (
+          {(
             <BackButton
-              onPress={onGoBack}
+              onPress={() => navigation.goBack()}
               label="Back"
               color={colors.primary}
             />
@@ -140,7 +144,7 @@ const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({
             {/* Help Text */}
             <Text style={styles.helpText}>
               Remember your password?{" "}
-              <Text style={styles.backToSignInText} onPress={onGoBack}>
+              <Text style={styles.backToSignInText} onPress={() => navigation.navigate(Paths.SignIn)}>
                 Back to Sign In
               </Text>
             </Text>

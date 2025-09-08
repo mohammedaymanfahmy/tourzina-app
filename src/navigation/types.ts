@@ -25,6 +25,7 @@ export type RootStackParamList = {
   [Paths.SignUp]: undefined;
   [Paths.ForgotPassword]: undefined;
   [Paths.NewPassword]: { email: string };
+  [Paths.NavStack]: undefined;
   [Paths.OTPVerification]: {
     email: string;
     purpose: "signup" | "forgot-password" | "login";

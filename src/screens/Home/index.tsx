@@ -1,11 +1,16 @@
 import React from "react";
-import BottomBar from "../../components/bottomBar/bottomBar";
 import { StyleSheet, Text } from 'react-native'
+import { useNavigation } from "@react-navigation/native";
+import { Paths } from "@/navigation/paths";
+import Button from "@/components/atoms/Button";
+
 
 const Home = () => {
+  const navigation = useNavigation();
   return (
     <>
       <Text style={styles.container}>Home</Text>
+
     </>
   );
 };

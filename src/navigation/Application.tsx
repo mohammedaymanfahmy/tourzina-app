@@ -26,6 +26,7 @@ import {
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+/* ------------------ Profile Stack ------------------ */
 function ProfileStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -36,6 +37,14 @@ function ProfileStack() {
       <Stack.Screen name={Paths.HelpAndSupport} component={HelpAndSupport} />
       <Stack.Screen name={Paths.Security} component={Security} />
       <Stack.Screen name={Paths.UserCards} component={UserCards} />
+    </Stack.Navigator>
+  );
+}
+
+/* ------------------ Auth Stack ------------------ */
+function AuthStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={Paths.SignIn} component={SignInScreen} />
       <Stack.Screen name={Paths.SignUp} component={SignUpScreen} />
       <Stack.Screen name={Paths.ForgotPassword} component={ForgotPasswordScreen} />
@@ -45,31 +54,41 @@ function ProfileStack() {
   );
 }
 
+/* ------------------ Main Tabs ------------------ */
+function MainTabs() {
+  return (
+    <Tab.Navigator
+      initialRouteName={Paths.Home}
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarIcon: ({ color, size }) => {
+          let iconName;
+          if (route.name === Paths.Home) iconName = "home";
+          else if (route.name === Paths.Profile) iconName = "person";
+          else if (route.name === Paths.Booking) iconName = "calendar";
+          else if (route.name === Paths.Message) iconName = "chatbubble";
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: "#007AFF",
+        tabBarInactiveTintColor: "gray",
+      })}
+    >
+      <Tab.Screen name={Paths.Home} component={Home} />
+      <Tab.Screen name={Paths.Booking} component={Booking} />
+      <Tab.Screen name={Paths.Message} component={Message} />
+      <Tab.Screen name={Paths.Profile} component={ProfileStack} />
+    </Tab.Navigator>
+  );
+}
+
+/* ------------------ Root Navigator ------------------ */
 export default function ApplicationNavigator() {
+  const isLoggedIn = true;
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName={Paths.Home}
-          screenOptions={({ route }) => ({
-            headerShown: false,
-            tabBarIcon: ({ color, size }) => {
-              let iconName;
-              if (route.name === Paths.Home) iconName = "home";
-              else if (route.name === Paths.Profile) iconName = "person";
-              else if (route.name === Paths.Booking) iconName = "calendar";
-              else if (route.name === Paths.Message) iconName = "chatbubble";
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: "#007AFF",
-            tabBarInactiveTintColor: "gray",
-          })}
-        >
-          <Tab.Screen name={Paths.Home} component={Home} />
-          <Tab.Screen name={Paths.Booking} component={Booking} />
-          <Tab.Screen name={Paths.Message} component={Message} />
-          <Tab.Screen name={Paths.Profile} component={ProfileStack} />
-        </Tab.Navigator>
+        {isLoggedIn ? <MainTabs /> : <AuthStack />}
       </NavigationContainer>
     </SafeAreaProvider>
   );

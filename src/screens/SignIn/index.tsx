@@ -17,6 +17,8 @@ import AppTitle from "../../components/atoms/title/AppTitle";
 import colors from "../../colors/colors";
 import { Image } from "react-native";
 import { hp, wp } from "@/utils/Dimensions";
+import { useNavigation } from "@react-navigation/native";
+import { Paths } from "@/navigation/paths";
 
 interface SignInFormData {
   email: string;
@@ -48,6 +50,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({
 
   const [errors, setErrors] = useState<SignInFormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
+
+
+  const navigation = useNavigation()
 
   const handleInputChange = (
     field: keyof SignInFormData,
@@ -99,19 +104,11 @@ const SignInScreen: React.FC<SignInScreenProps> = ({
   };
 
   const handleForgotPassword = () => {
-    if (onForgotPassword) {
-      onForgotPassword();
-    } else {
-      console.log("Navigate to Forgot Password");
-    }
+    navigation.navigate(Paths.ForgotPassword)
   };
 
   const handleSignUp = () => {
-    if (onNavigateToSignUp) {
-      onNavigateToSignUp();
-    } else {
-      console.log("Navigate to Sign Up");
-    }
+    navigation.navigate(Paths.SignUp)
   };
 
   return (
