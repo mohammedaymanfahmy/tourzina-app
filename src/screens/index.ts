@@ -1,8 +1,16 @@
-export { default as Example } from "./Example/Example";
-export { default as Startup } from "./Startup/Startup";
-export { default as SignUpScreen } from "./SignUp/SignUpScreen";
-export { default as SignInScreen } from "./SignIn/SignInScreen";
-export { default as ForgotPasswordScreen } from "./ForgotPassword/ForgotPasswordScreen";
-export { default as NewPasswordScreen } from "./NewPassword/NewPasswordScreen";
-export { default as OTPVerificationScreen } from "./OTPVerification/OTPVerificationScreen";
-export { default as HomeScreen } from "./Home/HomeScreen";
+
+export { default as SignUpScreen } from "./SignUp";
+export { default as SignInScreen } from "./SignIn";
+export { default as ForgotPasswordScreen } from "./ForgotPassword";
+export { default as NewPasswordScreen } from "./NewPassword";
+export { default as OTPVerificationScreen } from "./OTPVerification";
+export { default as Home } from './Home';
+export { default as Profile } from './Profile';
+export { default as Booking } from './Booking';
+export { default as Message } from './Message';
+export { default as PersonalInfo } from './PersonalInfo';
+export { default as LanguageScreen } from './LanguageScreen';
+export { default as Notifications } from './Notifications';
+export { default as HelpAndSupport } from './HelpAndSupport';
+export { default as Security } from './Security';
+export { default as UserCards } from './UserCards';

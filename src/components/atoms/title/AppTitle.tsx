@@ -14,7 +14,7 @@ type Props = {
 
 export default function AppTitle({ type, content }: Props) {
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={type === 'title' ? styles.title : type === 'subtitle' ? styles.subtitle : styles.label}>{content}</Text>
         </View>
     )
@@ -22,7 +22,8 @@ export default function AppTitle({ type, content }: Props) {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     title: {
         fontSize: 24,

@@ -1,135 +1,54 @@
 import React, { useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { wp, hp } from "../utils/Dimensions";
-
-// Import all screens
-import SignInScreen from "../screens/SignIn/SignInScreen";
-import SignUpScreen from "../screens/SignUp/SignUpScreen";
-import ForgotPasswordScreen from "../screens/ForgotPassword/ForgotPasswordScreen";
-import NewPasswordScreen from "../screens/NewPassword/NewPasswordScreen";
-import OTPVerificationScreen from "../screens/OTPVerification/OTPVerificationScreen";
-
-// Define navigation types
-export type RootStackParamList = {
-  SignIn: undefined;
-  SignUp: undefined;
-  ForgotPassword: undefined;
-  NewPassword: { email: string };
-  OTPVerification: {
-    email: string;
-    purpose: "signup" | "forgot-password" | "login";
-  };
-  Home: undefined;
-};
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaView, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { RootStackParamList } from './types';
+import {
+  Booking,
+  HelpAndSupport,
+  Home,
+  LanguageScreen,
+  Message,
+  Notifications,
+  PersonalInfo,
+  Profile,
+  Security,
+  UserCards,
+  SignInScreen,
+  SignUpScreen,
+  ForgotPasswordScreen,
+  NewPasswordScreen,
+  OTPVerificationScreen,
+} from "@/screens";
+import { Paths } from './paths';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-function ApplicationNavigator() {
-  useEffect(() => {
-    console.log("Tourzina App started 🚀");
-  }, []);
-
+const ApplicationNavigator = () => {
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="SignIn"
-          screenOptions={{
-            headerShown: false, // Hide headers for custom navigation
-            cardStyle: { backgroundColor: "#141416" }, // Match your app background
-          }}
-        >
-          <Stack.Screen name="SignIn" component={SignInScreenWrapper} />
-          <Stack.Screen name="SignUp" component={SignUpScreenWrapper} />
-          <Stack.Screen
-            name="ForgotPassword"
-            component={ForgotPasswordScreenWrapper}
-          />
-          <Stack.Screen
-            name="NewPassword"
-            component={NewPasswordScreenWrapper}
-          />
-          <Stack.Screen
-            name="OTPVerification"
-            component={OTPVerificationScreenWrapper}
-          />
+      <NavigationContainer >
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name={Paths.Home} component={Home} />
+          <Stack.Screen name={Paths.Profile} component={Profile} />
+          <Stack.Screen name={Paths.Booking} component={Booking} />
+          <Stack.Screen name={Paths.Message} component={Message} />
+          <Stack.Screen name={Paths.PersonalInfo} component={PersonalInfo} />
+          <Stack.Screen name={Paths.LanguageScreen} component={LanguageScreen} />
+          <Stack.Screen name={Paths.Notifications} component={Notifications} />
+          <Stack.Screen name={Paths.HelpAndSupport} component={HelpAndSupport} />
+          <Stack.Screen name={Paths.Security} component={Security} />
+          <Stack.Screen name={Paths.UserCards} component={UserCards} />
+          <Stack.Screen name={Paths.SignIn} component={SignInScreen} />
+          <Stack.Screen name={Paths.SignUp} component={SignUpScreen} />
+          <Stack.Screen name={Paths.ForgotPassword} component={ForgotPasswordScreen} />
+          <Stack.Screen name={Paths.NewPassword} component={NewPasswordScreen} />
+          <Stack.Screen name={Paths.OTPVerification} component={OTPVerificationScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
   );
-}
-
-// Screen wrappers to handle navigation
-function SignInScreenWrapper({ navigation }: any) {
-  return (
-    <SignInScreen
-      onNavigateToSignUp={() => navigation.navigate("SignUp")}
-      onGoBack={() => navigation.canGoBack() && navigation.goBack()}
-      onForgotPassword={() => navigation.navigate("ForgotPassword")}
-    />
-  );
-}
-
-function SignUpScreenWrapper({ navigation }: any) {
-  return (
-    <SignUpScreen
-      onNavigateToSignIn={() => navigation.navigate("SignIn")}
-      onGoBack={() => navigation.canGoBack() && navigation.goBack()}
-      onSignUpSuccess={(email: string) =>
-        navigation.navigate("OTPVerification", { email, purpose: "signup" })
-      }
-    />
-  );
-}
-
-function ForgotPasswordScreenWrapper({ navigation }: any) {
-  return (
-    <ForgotPasswordScreen
-      onGoBack={() => navigation.navigate("SignIn")}
-      onContinue={(email: string) =>
-        navigation.navigate("NewPassword", { email })
-      }
-    />
-  );
-}
-
-function NewPasswordScreenWrapper({ navigation, route }: any) {
-  const { email } = route.params;
-
-  return (
-    <NewPasswordScreen
-      email={email}
-      onGoBack={() => navigation.navigate("ForgotPassword")}
-      onSuccess={() => navigation.navigate("SignIn")}
-    />
-  );
-}
-
-function OTPVerificationScreenWrapper({ navigation, route }: any) {
-  const { email, purpose } = route.params;
-
-  return (
-    <OTPVerificationScreen
-      email={email}
-      purpose={purpose}
-      onGoBack={() => {
-        if (purpose === "signup") {
-          navigation.navigate("SignUp");
-        } else {
-          navigation.navigate("ForgotPassword");
-        }
-      }}
-      onVerifySuccess={() => {
-        if (purpose === "signup") {
-          navigation.navigate("Home");
-        } else {
-          navigation.navigate("SignIn");
-        }
-      }}
-    />
-  );
-}
+};
 
 export default ApplicationNavigator;
